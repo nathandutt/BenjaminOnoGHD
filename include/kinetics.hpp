@@ -32,13 +32,14 @@ struct Bin{
 
     void write(fstream& file) const{
 	file << "Bin{" << endl;
-	file << setw(4) << "start : " << start << "," << endl;
-	file << setw(4) << "end : " << end << "," << endl;
-	file << setw(4) << "eigenvalues : [" << end;
+	file << "	" << "start : " << start << "," << endl;
+	file << "	" << "end : " << end << "," << endl;
+	file << "	" << "eigenvalues : [" << endl;
+	file << "	";
 	for(const complex<double>& c : eigenvalues){
 	    file << c << ", ";
 	}
-	file << "]" << endl;
+	file << endl <<"	]" << endl;
 	file << "}" << endl;
     }
 };

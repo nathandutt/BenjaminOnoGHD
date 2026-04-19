@@ -24,8 +24,8 @@ Matrix LaxMatrix(const Bin& bin){
     for(int i = 0; i < N; i++){
 	lax(i, i) = ((bin.poles)[i]).zdot;
 	for(int j = 0; j < i; j++){
-	  lax(i, j) = cplx(0., 1.)/(p[i].z - p[j].z); 
-	  lax(j, i) = cplx(0., 1.)/(p[j].z - p[i].z); 
+	  lax(i, j) = cplx(0., -2.)/(p[i].z - p[j].z); 
+	  lax(j, i) = cplx(0., -2.)/(p[j].z - p[i].z); 
 	}
     }
     

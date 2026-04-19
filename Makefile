@@ -40,6 +40,9 @@ $(BIN)/$(BIN3): $(patsubst $(SRC)/$(BIN3)/%.cpp,$(BUILD)/$(BIN3)/%.o,$(wildcard 
 	$(CXX) $(LDFLAGS) $^ -o $@
 
 clean:
-	rm -rf $(BUILD) $(BIN) *.res *.dat
+	rm -rf $(BUILD) $(BIN) 
 
 rebuild: clean all
+
+purge: 
+	rm -rf output*

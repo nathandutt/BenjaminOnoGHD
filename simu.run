@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+./bin/random $@
+./bin/evolve $@
+./bin/kinetics $@

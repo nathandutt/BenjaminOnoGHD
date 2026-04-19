@@ -1,12 +1,14 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <filesystem> //To create output directory
 
 #include <vector>
 #include <complex>
 
 #include "kinetics.hpp" //Defines Bins and PoleData structs
 			//also declares getEigen method for bins
+#include "params.hpp"
 
 using namespace std;
 
@@ -16,17 +18,6 @@ using namespace std;
  * Then calculates local lax matrix eigenvalues
  * And writes the eigenvalues per bin to output file
 */
-
-struct Config{
-
-    double start = 0.;
-    double end = 1000.;
-    int nbins = 10;
-    string pole_file = "output/poles.res";
-    string velocity_file = "output/pole_velocities.res";
-    string output_file = "output/bins.res";
-
-};
 
 struct BinnedAxis{
     
@@ -65,33 +56,55 @@ struct BinnedAxis{
 	//See Bin::write for more info
 
 	file << "Timestep{" << endl;
-	file << "time : " << time << endl;
-	file << "nbins : " << num_bins << endl;
+	file << "	time : " << time << endl;
+	file << "	nbins : " << num_bins << endl;
 	for(const Bin& bin : bins){
 	    bin.write(file);
 	}
 	file << "}" << endl;
     }
 };
-int main(){
+int main(int argc, char * argv[]){
+
+    cout << "Calculating local lax matrices and binning values" << endl;
+
+    int pid = 0;
+    if(argc > 1){
+	stringstream ss(argv[1]);
+	ss >> pid;
+    }
+    //Get global parameters
+    string paramfile = "global.params";
+    Params params = parseParams(paramfile, pid);
+
+    cout << "# KINETIC ANALYSIS PARAMETERS #" << endl << endl;
+    cout << "	X axis is [" << params.x_start << ", " << params.x_end << "]" << endl;
+    cout << "	Axis is split into " << params.num_bins << " bins" << endl << endl;
+
+    //Create output folder if doesn't exist
+    filesystem::create_directory(params.output_folder);
+
+    //Define input/ouptut filenames
+    string pole_file = params.output_folder + "poles.res";
+    string velocity_file = params.output_folder + "pole_velocities.res";
+    string output_file = params.output_folder + "bins.res";
+
     //Initialize
-    Config config;    
     fstream pfile, vfile, ofile;
     string pole_input, vel_input;
 
     //Open input and output files
     //TODO: add error handling?
-    pfile.open(config.pole_file, ios::in);
-    vfile.open(config.velocity_file, ios::in);
-    ofile.open(config.output_file, ios::out);
+    pfile.open(pole_file, ios::in);
+    vfile.open(velocity_file, ios::in);
+    ofile.open(output_file, ios::out);
 
 
     while(getline(pfile, pole_input) && getline(vfile, vel_input)){
-	//Each line is a timestep, thus loop over all timesteps
-	
+	//Each line is a timestep, thus loop over all timestep	
 
 	//Create bins
-	BinnedAxis axis(config.start, config.end, config.nbins);
+	BinnedAxis axis(params.x_start, params.x_end, params.num_bins);
 
 	//Extract pole data and pole velocity data from input lines
 	stringstream ps(pole_input), vs(vel_input);
@@ -109,7 +122,6 @@ int main(){
 	
 	//For each bin, compute local Lax eigenvalues
 	for(Bin& b : axis.bins){
-	    cout << b.poles.size() << endl;
 	    b.getEigen();		   //Note: also coded in seperate file, to
 			 		   //minimize recompilation of Eigen lib
 	}

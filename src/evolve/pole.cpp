@@ -16,8 +16,8 @@ Matrix hirota(const vector<cplx>& k_s, const vector<cplx>& b_s, const double tim
     for(int i =0; i<N; i++){
 	ret(i, i) = k_s[i]*time + b_s[i];
 	for(int j= 0; j < i; j++){
-	    ret(i, j) = complex(0., 1.)/(k_s[i] - k_s[j]);
-	    ret(j, i) = complex(0., 1.)/(k_s[j] - k_s[i]);
+	    ret(i, j) = complex(0., -2.)/(k_s[i] - k_s[j]);
+	    ret(j, i) = complex(0., -2.)/(k_s[j] - k_s[i]);
 	}
     }
     return ret;

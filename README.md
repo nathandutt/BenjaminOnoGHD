@@ -112,8 +112,6 @@ Each binary currently has a local `Config` struct defined in its `main.cpp`. Key
 
 ## TODO
 
-- [ ] Add PID and custom output file path for cluster deployment
-- [ ] Introduce a global `.params` file to replace the per-binary `Config` struct
 
 ---
 
@@ -137,4 +135,3 @@ Each binary currently has a local `Config` struct defined in its `main.cpp`. Key
 
 The **Benjamin-Ono equation** is an integrable nonlinear dispersive PDE arising in the study of internal waves in deep stratified fluids. Its $N$-soliton solutions admit an exact representation in terms of poles in the complex upper half-plane. The dynamics of these poles are governed by a Calogero-Moser-type system, making them analytically tractable and numerically efficient to evolve.
 
-The **effective hydrodynamics** studied here corresponds to a large-$N$, slowly-varying-envelope limit in which local thermodynamic quantities — particularly the distribution of rapidities — describe the macroscopic state of the gas of solitons. This is analogous to generalized hydrodynamics (GHD) for integrable quantum systems.
