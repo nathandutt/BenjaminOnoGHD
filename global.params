@@ -16,5 +16,5 @@ t_step		10.
 
 x_start		0.
 x_end		1000.
-num_bins	10
+num_bins	50
 
