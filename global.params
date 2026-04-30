@@ -4,7 +4,7 @@ N_solitons	1000
 k_low		1.
 k_upp		50.
 k_step	 	0.01
-b_max		500.
+b_max		50.
 
 #EVOLUTION PARAMETERS
 
@@ -16,5 +16,5 @@ t_step		10.
 
 x_start		0.
 x_end		1000.
-num_bins	50
+num_bins	10
 
