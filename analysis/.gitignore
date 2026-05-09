@@ -1,3 +1,4 @@
 *.png
-readbins
+bin/
+data/
 *.res

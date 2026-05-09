@@ -38,14 +38,14 @@ struct BinnedAxis{
 	dx = (end - start)/N;
 
 	for(int i = 0; i < N; i++){
-	    bins.emplace_back(Bin(i*dx, (i+1)*dx));
+	    bins.emplace_back(Bin(start+i*dx, start+(i+1)*dx));
 	}
 	
     }
 
     void addPole(const complex<double>& z, const complex<double>& vz){
 	//Add pole to correct bin
-	int bin_idx= floor(z.real()/dx);
+	int bin_idx= floor((z.real()-start)/dx);
 	if((bin_idx < 0) || (bin_idx >= num_bins))
 	    return;
 	bins[bin_idx].add(z, vz);

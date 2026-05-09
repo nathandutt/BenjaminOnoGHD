@@ -2,19 +2,19 @@
 
 N_solitons	1000
 k_low		1.
-k_upp		50.
-k_step	 	0.01
-b_max		50.
+k_upp		71.
+k_step	 	0.05	
+b_max		0.01
 
 #EVOLUTION PARAMETERS
 
 t_start		0.
-t_end		10.01
-t_step		10.
+t_end		10.1
+t_step		10.	
 
 #BINNING PARAMETERS
 
-x_start		0.
-x_end		1000.
-num_bins	10
+x_start		-1000
+x_end		1000
+num_bins	500
 

@@ -3,12 +3,12 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
 # --- Load data ---
-data = np.loadtxt("../output1/poles.res")
+data = np.loadtxt("../out/output0/poles.res")
 times = data[:, 0]
 poles = data[:, 1:]  # shape (T, 2N)
 N = poles.shape[1] // 2
 
-x = np.linspace(-20, 100, 1000)
+x = np.linspace(-1500, 1500, 5000)
 
 def density(row, x):
     xi = row[0::2]  # x1, x2, ..., xN

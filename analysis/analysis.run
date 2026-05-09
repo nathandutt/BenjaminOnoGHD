@@ -1,6 +1,6 @@
 #!/bin/bash
 
-g++ -O3 -I"../include" readbins.cpp -o readbins
-./readbins
+g++ -O3 -I"../include" src/readbins.cpp -o bin/readbins
+./bin/readbins
 
 

@@ -25,7 +25,7 @@ struct Params{
     std::string output_folder;
 };
 
-Params parseParams(const std::string& file, int pid = 0, std::string output_folder = "output"){
+Params parseParams(const std::string& file, int pid = 0, std::string output_folder = "out/output"){
     Params p;
 
     fstream fs;

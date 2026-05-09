@@ -30,6 +30,7 @@ int main(){
     //Read each simulation file
 
     int bins = params.num_bins;
+    int dx = (params.x_end - params.x_start)/bins;
     for(int i = 1; i <= simu; i++){
 	//Open simulation output file
 	string filename = prefix + to_string(i) + suffix;
@@ -44,11 +45,7 @@ int main(){
 	}
 
 	string timestep;
-	int simtime = 0;
 	while((getline(file, timestep)) && (timestep=="Timestep{")){
-	    simtime++;
-	    cout << simtime << endl;
-
 	    //Get time
 	    double time;
 	    string tstring; getline(file, tstring);
@@ -58,6 +55,7 @@ int main(){
 
 	    //Loop over bins
 	    for(int bin_id = 0; bin_id < bins; bin_id++){
+		double bin_center = params.x_start + dx*0.5 + dx*bin_id;
 		skiplines(file, 4);	
 		char ch; double num1, num2;
 
@@ -65,7 +63,7 @@ int main(){
 		//Loop over eigenvalues
 		while((e >> ch) && (ch == '(')){
 		    e >> num1 >> ch >> num2 >> ch >> ch;
-		    outfile << time << " " << bin_id << " " << num1 << endl;
+		    outfile << time << " " << bin_center << " " << num1 << endl;
 		}
 		skiplines(file, 2);
 	    }
