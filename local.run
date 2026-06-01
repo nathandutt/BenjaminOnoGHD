@@ -1,6 +1,0 @@
-#!/bin/bash
-
-for i in $(seq 1 800)
-do
-    ./simu.run $i
-done

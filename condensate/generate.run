@@ -1,0 +1,5 @@
+#!/bin/bash
+
+g++ main.cpp -o run
+./run 
+mv ./output.res /home/ndutoit/Solitons/BenjaminOno/out/output0/solitons.params

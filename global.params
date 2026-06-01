@@ -1,6 +1,6 @@
 # RANDOM GENERATION PARAMETERS
 
-N_solitons	1000
+N_solitons	21
 k_low		1.
 k_upp		71.
 k_step	 	0.05	
@@ -9,8 +9,8 @@ b_max		0.01
 #EVOLUTION PARAMETERS
 
 t_start		0.
-t_end		10.1
-t_step		10.	
+t_end		5000
+t_step		50.
 
 #BINNING PARAMETERS
 
